@@ -3,6 +3,8 @@ import { zdk } from '$lib/zdk';
 import type { SortDirection, TokenSortKey } from '@zoralabs/zdk';
 import type { PageServerLoad } from './$types';
 
+export const prerender = 'auto';
+
 export const load = (async () => {
   const result = await zdk.tokens({
     where: { collectionAddresses: [ALEATORIC_ADDRESS] },

@@ -2,6 +2,8 @@ import { ALEATORIC_ADDRESS } from '$lib/constants';
 import { zdk } from '$lib/zdk';
 import type { PageServerLoad } from './$types';
 
+export const prerender = 'auto';
+
 export const load = (async ({ params }) => {
   const collection = await zdk.collection({ address: ALEATORIC_ADDRESS });
 
