@@ -2,6 +2,7 @@
   import { marked } from 'marked';
   import AleatoricVideo from '../../components/AleatoricVideo.svelte';
   import type { PageData } from './$types';
+  import OpenGraphForAleatoric from '../../components/OpenGraphForAleatoric.svelte';
 
   export let data: PageData;
 
@@ -14,6 +15,8 @@
 
   $: uri = data.token?.token.image?.url;
 </script>
+
+<OpenGraphForAleatoric token={data.token.token} />
 
 <main class="h-screen flex flex-col">
   <div class="flex flex-row justify-center">

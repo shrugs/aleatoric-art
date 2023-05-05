@@ -6,6 +6,17 @@
 
 <svelte:head>
   <title>Aleatoric</title>
+  <meta property="og:title" content="Aleatoric, by one of the many matts" />
+  <meta property="og:url" content="https://aleatoric.art" />
+  <meta
+    property="og:description"
+    content="Aleatoric is an experiment in artistic intentionality, digital scarcity, and serendipity
+        where I literally make art in my sleep: my sleep talk babble is auto-transcribed,
+        auto-visualized, and minted into an NFT the morning-of."
+  />
+  <meta property="og:image" content="https://aleatoric.art/meta.png" />
+  <meta name="twitter:site" content="@1ofthemanymatts" />
+  <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
 <main class="flex flex-col py-4 md:px-4 gap-4">
