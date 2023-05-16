@@ -9,6 +9,9 @@
 
   $: src = uri && convertURIToHTTPS(uri);
 
+  const ID_REGEX = /\/(\d+)\.mp4$/;
+  $: tokenId = uri?.match(ID_REGEX)?.[1];
+
   function toggleMute() {
     muted = !muted;
   }
@@ -19,6 +22,9 @@
     <!-- <div class="w-full aspect-video" /> -->
     <!-- svelte-ignore a11y-media-has-caption -->
     <video class="w-full aspect-video" {autoplay} bind:muted loop>
+      {#if tokenId}
+        <source type="video/mp4" src="/assets/{tokenId}.mp4" />
+      {/if}
       {#if uri}
         <source type="video/mp4" {src} />
       {/if}
