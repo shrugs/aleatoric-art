@@ -1,5 +1,5 @@
 <script lang="ts">
-  import AleatoricCard from '../components/AleatoricCard.svelte';
+  import AleatoricCard from '$lib/components/AleatoricCard.svelte';
 
   export let data;
 </script>

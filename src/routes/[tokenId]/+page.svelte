@@ -1,19 +1,18 @@
 <script lang="ts">
   import { marked } from 'marked';
-  import AleatoricVideo from '../../components/AleatoricVideo.svelte';
+  import AleatoricVideo from '$lib/components/AleatoricVideo.svelte';
+  import OpenGraphForAleatoric from '$lib/components/OpenGraphForAleatoric.svelte';
   import type { PageData } from './$types';
-  import OpenGraphForAleatoric from '../../components/OpenGraphForAleatoric.svelte';
 
   export let data: PageData;
 
-  $: tokenId = parseInt(data.token?.token.tokenId ?? '0');
-  $: prevTokenId = tokenId === 0 ? data.maxTokenId : tokenId - 1;
-  $: nextTokenId = tokenId === data.maxTokenId ? 0 : tokenId + 1;
+  $: prevTokenId = data.tokenId === 0 ? data.maxTokenId : data.tokenId - 1;
+  $: nextTokenId = data.tokenId === data.maxTokenId ? 0 : data.tokenId + 1;
 
-  $: name = data.token?.token.name;
-  $: description = data.token?.token.description;
+  $: name = data.token.token.name;
+  $: description = data.token.token.description;
 
-  $: uri = data.token?.token.image?.url;
+  $: uri = data.token.token.image?.url;
 </script>
 
 <OpenGraphForAleatoric token={data.token.token} />
@@ -46,8 +45,8 @@
         </div>
         <a
           class="text-xs underline text-gray-500"
-          href="https://market.zora.co/collections/{data.token?.token.tokenContract
-            ?.collectionAddress}/{tokenId}"
+          href="https://market.zora.co/collections/{data.token.token.tokenContract
+            ?.collectionAddress}/{data.tokenId}"
           rel="noopener noreferrer"
           target="_blank">view on Zora</a
         >

@@ -1,21 +1,13 @@
-import { ALEATORIC_ADDRESS } from '$lib/constants';
-import { zdk } from '$lib/zdk';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
-export const prerender = 'auto';
+export const load = (async ({ params, parent }) => {
+  const { tokens } = await parent();
 
-export const load = (async ({ params }) => {
-  const collection = await zdk.collection({ address: ALEATORIC_ADDRESS });
+  const token = tokens.find((token) => token.token.tokenId === params.tokenId);
+  if (!token) throw error(404);
 
-  const result = await zdk.token({
-    token: { address: ALEATORIC_ADDRESS, tokenId: params.tokenId }
-  });
+  const tokenId = parseInt(params.tokenId);
 
-  if (!result.token) throw error(404);
-
-  return {
-    token: result.token,
-    maxTokenId: (collection.totalSupply ?? 46) - 1
-  };
+  return { tokenId, token };
 }) satisfies PageServerLoad;
