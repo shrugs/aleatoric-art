@@ -9,7 +9,10 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write ."
+    "format": "prettier --plugin-search-dir . --write .",
+    "new-asset": "npm run assets && npm run posters",
+    "assets": "for i in ../aleatoric/assets/*.mp4; do ffmpeg -y -i \"$i\" -vcodec libx264 -pix_fmt yuv420p -profile:v baseline -c:a copy -level 3 \"static/assets/$(basename $i)\" ; done",
+    "posters": "for i in ../aleatoric/assets/*.mp4; do ffmpeg -y -i \"$i\" -ss 1 -frames:v 1 \"static/posters/$(basename $i).png\" ; done"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.2",

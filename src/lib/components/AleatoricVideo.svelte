@@ -21,7 +21,7 @@
   {#key uri}
     <!-- <div class="w-full aspect-video" /> -->
     <!-- svelte-ignore a11y-media-has-caption -->
-    <video class="w-full aspect-video" {autoplay} bind:muted loop>
+    <video class="w-full aspect-video" poster="/posters/{tokenId}.mp4.png" {autoplay} bind:muted loop>
       {#if tokenId}
         <source type="video/mp4" src="/assets/{tokenId}.mp4" />
       {/if}
