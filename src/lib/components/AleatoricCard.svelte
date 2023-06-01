@@ -9,7 +9,7 @@
 <a href="/{token.tokenId}">
   <div class="flex flex-col {smol ? 'gap-1' : 'gap-2'}">
     {#if smol}
-      <img src="/posters/{token.tokenId}.mp4.png" alt="poster for token {token.tokenId}" />
+      <img src="/posters/{token.tokenId}.mp4.jpg" alt="poster for token {token.tokenId}" />
     {:else}
       <AleatoricVideo {token} />
     {/if}

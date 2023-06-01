@@ -19,7 +19,7 @@
     <!-- svelte-ignore a11y-media-has-caption -->
     <video
       class="w-full aspect-video"
-      poster="/posters/{tokenId}.mp4.png"
+      poster="/posters/{tokenId}.mp4.jpg"
       {autoplay}
       bind:muted
       loop

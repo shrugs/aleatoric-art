@@ -12,7 +12,7 @@
     "format": "prettier --plugin-search-dir . --write .",
     "new-asset": "npm run assets && npm run posters",
     "assets": "for i in ../aleatoric/assets/*.mp4; do ffmpeg -y -i \"$i\" -vcodec libx264 -pix_fmt yuv420p -profile:v baseline -c:a copy -level 3 \"static/assets/$(basename $i)\" ; done",
-    "posters": "for i in ../aleatoric/assets/*.mp4; do ffmpeg -y -i \"$i\" -frames:v 1 \"static/posters/$(basename $i).png\" ; done"
+    "posters": "for i in ../aleatoric/assets/*.mp4; do  ffmpeg -y -i \"$i\" -frames:v 1 \"static/posters/$(basename $i).jpg\"; done"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.2",
