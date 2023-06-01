@@ -8,7 +8,7 @@
   <meta property="og:title" content={token.name} />
   <meta property="og:url" content="https://aleatoric.art/{token.tokenId}" />
   <meta property="og:description" content={token.description} />
-  <meta property="og:image" content="https://aleatoric.art/posters/{token.tokenId}.mp4.jpg" />
+  <meta property="og:image" content="https://aleatoric.art/thumbs/{token.tokenId}.mp4.jpg" />
 
   <meta property="og:type" content="video" />
   <meta property="og:video" content="https://aleatoric.art/assets/{token.tokenId}.mp4" />
