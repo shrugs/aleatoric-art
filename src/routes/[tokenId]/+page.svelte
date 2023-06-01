@@ -9,13 +9,14 @@
   $: prevTokenId = data.tokenId === 0 ? data.maxTokenId : data.tokenId - 1;
   $: nextTokenId = data.tokenId === data.maxTokenId ? 0 : data.tokenId + 1;
 
-  $: name = data.token.token.name;
-  $: description = data.token.token.description;
+  $: token = data.token.token;
 
-  $: uri = data.token.token.image?.url;
+  $: name = token.name;
+  $: description = token.description;
+  $: tokenContract = token.tokenContract?.collectionAddress;
 </script>
 
-<OpenGraphForAleatoric token={data.token.token} />
+<OpenGraphForAleatoric {token} />
 
 <main class="h-screen flex flex-col">
   <div class="flex flex-row justify-center">
@@ -32,21 +33,23 @@
     >
     <div class="flex-1 flex flex-col lg:flex-row justify-center w-full gap-8">
       <div class="flex-1 flex flex-col justify-center">
-        <AleatoricVideo {uri} controls />
+        <AleatoricVideo {token} controls />
       </div>
       <div class="flex flex-col gap-2 lg:w-96 p-4 lg:p-0">
         <div class="flex-1 flex-col gap-2">
           <h1 class="text-xl">{name}</h1>
           {#if description}
             <p class="text-sm prose">
-              {@html marked.parse(description.replaceAll(name ?? '', ''))}
+              {@html marked.parse(description.replaceAll(name ?? '', ''), {
+                mangle: false,
+                headerIds: false
+              })}
             </p>
           {/if}
         </div>
         <a
           class="text-xs underline text-gray-500"
-          href="https://market.zora.co/collections/{data.token.token.tokenContract
-            ?.collectionAddress}/{data.tokenId}"
+          href="https://market.zora.co/collections/{tokenContract}/{data.tokenId}"
           rel="noopener noreferrer"
           target="_blank">view on Zora</a
         >
