@@ -3,6 +3,8 @@
   import AleatoricVideo from '$lib/components/AleatoricVideo.svelte';
   import OpenGraphForAleatoric from '$lib/components/OpenGraphForAleatoric.svelte';
   import type { PageData } from './$types';
+  import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
 
   export let data: PageData;
 
@@ -14,6 +16,24 @@
   $: name = token.name;
   $: description = token.description;
   $: tokenContract = token.tokenContract?.collectionAddress;
+
+  const onKeyDown = (event: KeyboardEvent) => {
+    switch (event.key) {
+      case 'ArrowUp':
+      case 'ArrowLeft': {
+        return goto(`/${prevTokenId}`);
+      }
+      case 'ArrowRight':
+      case 'ArrowDown': {
+        return goto(`/${nextTokenId}`);
+      }
+    }
+  };
+
+  onMount(() => {
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  });
 </script>
 
 <OpenGraphForAleatoric {token} />
