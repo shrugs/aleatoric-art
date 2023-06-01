@@ -10,14 +10,12 @@ const zdk = new ZDK({
 let _cache: TokensQuery;
 
 export async function fetchTokens() {
-  if (!_cache) {
-    console.log('calling zdk...');
+  if (!_cache)
     _cache = await zdk.tokens({
       where: { collectionAddresses: [ALEATORIC_ADDRESS] },
       sort: { sortKey: 'MINTED' as TokenSortKey, sortDirection: 'DESC' as SortDirection },
       pagination: { limit: 100 }
     });
-  }
 
   return _cache;
 }

@@ -8,7 +8,11 @@
 
 <a href="/{token.tokenId}">
   <div class="flex flex-col {smol ? 'gap-1' : 'gap-2'}">
-    <AleatoricVideo uri={token.image?.url} autoplay={!smol} />
+    {#if smol}
+      <img src="/posters/{token.tokenId}.mp4.png" alt="poster for token {token.tokenId}" />
+    {:else}
+      <AleatoricVideo {token} />
+    {/if}
     <div class="px-px flex flex-col {smol ? 'gap-1' : 'gap-2'}">
       <h3 class={smol ? 'text-xs' : 'text-sm'}>{token.name}</h3>
     </div>

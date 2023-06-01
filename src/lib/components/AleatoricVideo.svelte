@@ -1,16 +1,13 @@
 <script lang="ts">
-  import { convertURIToHTTPS } from '@zoralabs/nft-hooks/dist/fetcher/UriUtils';
+  import type { TokensQuery } from '@zoralabs/zdk';
 
-  export let uri: string | null | undefined;
+  export let token: TokensQuery['tokens']['nodes'][0]['token'];
   export let controls: boolean = false;
   export let autoplay: boolean = true;
 
   let muted = true;
 
-  $: src = uri && convertURIToHTTPS(uri);
-
-  const ID_REGEX = /\/(\d+)\.mp4$/;
-  $: tokenId = uri?.match(ID_REGEX)?.[1];
+  $: tokenId = token.tokenId;
 
   function toggleMute() {
     muted = !muted;
@@ -18,16 +15,16 @@
 </script>
 
 <div class="flex flex-col items-stretch gap-1">
-  {#key uri}
-    <!-- <div class="w-full aspect-video" /> -->
+  {#key tokenId}
     <!-- svelte-ignore a11y-media-has-caption -->
-    <video class="w-full aspect-video" poster="/posters/{tokenId}.mp4.png" {autoplay} bind:muted loop>
-      {#if tokenId}
-        <source type="video/mp4" src="/assets/{tokenId}.mp4" />
-      {/if}
-      {#if uri}
-        <source type="video/mp4" {src} />
-      {/if}
+    <video
+      class="w-full aspect-video"
+      poster="/posters/{tokenId}.mp4.png"
+      {autoplay}
+      bind:muted
+      loop
+    >
+      <source type="video/mp4" src="/assets/{tokenId}.mp4" />
     </video>
   {/key}
   {#if controls}
